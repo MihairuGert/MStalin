@@ -21,7 +21,7 @@ public class ScreenMenu implements Screen {
         c = context;
         // создание изображений
         imgBG = new Texture("menu_background.jpg");
-        btnPlay = new TextButton(c.fontLarge, "ИГРАТЬ", 650);
+        btnPlay = new TextButton(c.fontLarge, "РАССТРЕЛИВАТЬ", 650);
         btnSettings = new TextButton(c.fontLarge, "НАСТРОЙКИ", 550);
         btnAbout = new TextButton(c.fontLarge, "ОБ ИГРЕ", 450);
         btnExit = new TextButton(c.fontLarge, "ВЫХОД", 350);

@@ -1,5 +1,6 @@
 package ru.myitschool.sungdx;
 
+import static com.badlogic.gdx.Input.Keys.T;
 import static ru.myitschool.sungdx.MainGame.*;
 
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class ScreenOfTheGame implements Screen {
     MainGame c;
     InputKeyboard inputKeyboard;
@@ -19,8 +24,11 @@ public class ScreenOfTheGame implements Screen {
     Texture imgBG;
     Sound[] sndMosq = new Sound[3];
 
+    ArrayList<EnemyOfTheNation> enemiesOfN = new ArrayList<>();
 
-    EnemyOfTheNation[] mosq = new EnemyOfTheNation[5];
+    long timeEnemyLastSpawn, getTimeEnemySpawnInterval = 1000;
+
+        //mosq = new EnemyOfTheNation[5];
     Player[] players = new Player[6];
     Player player;
     int frags;
@@ -45,8 +53,6 @@ public class ScreenOfTheGame implements Screen {
             sndMosq[i] = Gdx.audio.newSound(Gdx.files.internal("mosq"+i+".mp3"));
         }
 
-
-
         // создание игроков для таблицы рекордов
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player("Никто", 0);
@@ -60,6 +66,7 @@ public class ScreenOfTheGame implements Screen {
     public void show() {
         gameStart();
         Gdx.input.setCatchKey(Input.Keys.BACK,true);
+        enemiesOfN.add(new EnemyOfTheNation());
     }
 
     @Override
@@ -73,12 +80,13 @@ public class ScreenOfTheGame implements Screen {
                 else gameStart();
             }
             if(condition == PLAY_GAME){
-                for (int i = mosq.length - 1; i >= 0; i--) {
-                    if (mosq[i].isAlive && mosq[i].hit(c.touch.x, c.touch.y)) {
+                for (int i = enemiesOfN.size() - 1; i >= 0; i--) {
+                    if (enemiesOfN.get(i).isAlive && enemiesOfN.get(i).hit(c.touch.x, c.touch.y)) {
                         frags++;
+                        //enemiesOfN.remove(i);
                         if(soundOn)
                             sndMosq[0].play();
-                        if (frags == mosq.length)
+                        if (frags == enemiesOfN.size())
                             gameOver();
                         break;
                     }
@@ -92,6 +100,7 @@ public class ScreenOfTheGame implements Screen {
                     sortPlayers();
                     saveTableOfRecords();
                     condition = SHOW_TABLE;
+                    enemiesOfN.clear();
                 }
             }
         }
@@ -101,22 +110,23 @@ public class ScreenOfTheGame implements Screen {
         }
 
         // события игры
-        for (int i = 0; i < mosq.length; i++) {
-            mosq[i].move();
+        for (int i = 0; i < enemiesOfN.size(); i++) {
+            enemiesOfN.get(i).move();
         }
         if(condition == PLAY_GAME) {
             timeCurrent = TimeUtils.millis() - timeStart;
         }
+        spawnEnemy();
 
         // отрисовка всей графики
         c.camera.update();
         c.batch.setProjectionMatrix(c.camera.combined);
         c.batch.begin();
         c.batch.draw(imgBG, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        for (int i = 0; i < mosq.length; i++) {
-            c.batch.draw(imgMosq[mosq[i].faza], mosq[i].getX(), mosq[i].getY(), mosq[i].width, mosq[i].height, 0, 0, 500, 500, mosq[i].isFlip(), false);
+        for (int i = 0; i < enemiesOfN.size(); i++) {
+            c.batch.draw(imgMosq[enemiesOfN.get(i).faza], enemiesOfN.get(i).getX(), enemiesOfN.get(i).getY(), enemiesOfN.get(i).width, enemiesOfN.get(i).height, 0, 0, 500, 500, enemiesOfN.get(i).isFlip(), false);
         }
-        c.font.draw(c.batch, "KILLS: "+frags, 10, SCR_HEIGHT-10);
+        c.font.draw(c.batch, "РАССТРЕЛЯНО: "+frags, 10, SCR_HEIGHT-10);
         c.font.draw(c.batch, timeToString(timeCurrent), SCR_WIDTH-200, SCR_HEIGHT-10);
         if(condition == ENTER_NAME) inputKeyboard.draw(c.batch);
         if(condition == SHOW_TABLE) {
@@ -125,6 +135,7 @@ public class ScreenOfTheGame implements Screen {
         }
         c.batch.end();
     }
+
 
     String timeToString(long time){
         return time/1000/60/60 + ":" + time/1000/60%60/10 + time/1000/60%60%10 + ":" + time/1000%60/10 + time/1000%60%10;
@@ -139,9 +150,10 @@ public class ScreenOfTheGame implements Screen {
         condition = PLAY_GAME;
         frags = 0;
         timeStart = TimeUtils.millis();
-        // создание комаров
-        for (int i = 0; i < mosq.length; i++) {
-            mosq[i] = new EnemyOfTheNation();
+        spawnEnemy();
+        // создание врагов
+        for (int i = 0; i <2 ; i++) {
+            enemiesOfN.add(new EnemyOfTheNation());
         }
         loadTableOfRecords();
     }
@@ -197,6 +209,13 @@ public class ScreenOfTheGame implements Screen {
         String s = "";
         for (int i = 0; i < n; i++) s += ".";
         return s;
+    }
+
+    void spawnEnemy(){
+            if (TimeUtils.millis() > timeEnemyLastSpawn + getTimeEnemySpawnInterval) {
+                enemiesOfN.add(new EnemyOfTheNation());
+                timeEnemyLastSpawn = TimeUtils.millis();
+            }
     }
 
 
