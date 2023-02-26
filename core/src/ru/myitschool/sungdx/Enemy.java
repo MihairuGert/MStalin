@@ -16,7 +16,7 @@ public class Enemy {
         y = MathUtils.random(SCR_HEIGHT);
         width = 200;
         height = 120;
-        vx = -3;//MathUtils.random(-3f,-0.1f);
+        vx = -5;//MathUtils.random(-3f,-0.1f);
         vy = 0;
         faza = MathUtils.random(0, nFaz-1);
     }
