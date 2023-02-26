@@ -9,7 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(144);
-		config.setTitle("Mihairu's NKVD Simulator");
+		config.setTitle("Mihairu's food defense");
 		config.setWindowedMode(SCR_WIDTH, SCR_HEIGHT);
 		new Lwjgl3Application(new MainGame(), config);
 	}

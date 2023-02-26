@@ -4,19 +4,20 @@ import static ru.myitschool.sungdx.MainGame.*;
 
 import com.badlogic.gdx.math.MathUtils;
 
-public class EnemyOfTheNation {
+public class Enemy {
     float x, y;
     float width, height;
     float vx, vy;
     int faza, nFaz = 10;
     boolean isAlive = true;
 
-    EnemyOfTheNation(){
-        x = SCR_WIDTH/2f;
-        y = SCR_HEIGHT/2f;
-        width = height = MathUtils.random(150, 150);
-        vx = MathUtils.random(-5f, 5);
-        vy = MathUtils.random(-5f, 5);
+    Enemy(){
+        x = SCR_WIDTH-100;
+        y = MathUtils.random(SCR_HEIGHT);
+        width = 200;
+        height = 120;
+        vx = -3;//MathUtils.random(-3f,-0.1f);
+        vy = 0;
         faza = MathUtils.random(0, nFaz-1);
     }
 
@@ -32,7 +33,7 @@ public class EnemyOfTheNation {
         x += vx;
         y += vy;
         if(isAlive) {
-            outBounds2();
+            outBounds1();
             changePhase();
         }
     }

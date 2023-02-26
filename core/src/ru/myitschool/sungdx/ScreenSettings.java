@@ -17,7 +17,7 @@ public class ScreenSettings implements Screen {
     public ScreenSettings(MainGame context){
         c = context;
         // создание изображений
-        imgBG = new Texture("winter2.jpg");
+        imgBG = new Texture("settingsBG.jpg");
         btnSound = new TextButton(c.fontLarge, "ЗВУК ВКЛ", 600, 650);
         btnMusic = new TextButton(c.fontLarge, "МУЗЫКА", 600, 550);
         btnLanguage = new TextButton(c.fontLarge, "ЧТО-ТО", 600, 450);
