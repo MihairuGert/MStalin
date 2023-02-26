@@ -1,20 +1,20 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.SCR_HEIGHT;
-import static ru.myitschool.sungdx.MyGdx.SCR_WIDTH;
+import static ru.myitschool.sungdx.MainGame.SCR_HEIGHT;
+import static ru.myitschool.sungdx.MainGame.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
 public class ScreenSettings implements Screen {
-    MyGdx c;
+    MainGame c;
 
     Texture imgBG;
 
     TextButton btnSound, btnMusic, btnLanguage, btnExit;
 
-    public ScreenSettings(MyGdx context){
+    public ScreenSettings(MainGame context){
         c = context;
         // создание изображений
         imgBG = new Texture("winter2.jpg");

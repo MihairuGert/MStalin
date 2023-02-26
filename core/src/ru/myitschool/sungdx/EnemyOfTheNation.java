@@ -1,17 +1,17 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.*;
+import static ru.myitschool.sungdx.MainGame.*;
 
 import com.badlogic.gdx.math.MathUtils;
 
-public class Mosquito {
+public class EnemyOfTheNation {
     float x, y;
     float width, height;
     float vx, vy;
     int faza, nFaz = 10;
     boolean isAlive = true;
 
-    Mosquito(){
+    EnemyOfTheNation(){
         x = SCR_WIDTH/2f;
         y = SCR_HEIGHT/2f;
         width = height = MathUtils.random(150, 150);

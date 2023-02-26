@@ -1,9 +1,8 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.*;
+import static ru.myitschool.sungdx.MainGame.*;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import ru.myitschool.sungdx.MyGdx;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -12,6 +11,6 @@ public class DesktopLauncher {
 		config.setForegroundFPS(144);
 		config.setTitle("Mihairu's NKVD Simulator");
 		config.setWindowedMode(SCR_WIDTH, SCR_HEIGHT);
-		new Lwjgl3Application(new MyGdx(), config);
+		new Lwjgl3Application(new MainGame(), config);
 	}
 }

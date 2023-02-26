@@ -1,20 +1,18 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.*;
+import static ru.myitschool.sungdx.MainGame.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class ScreenGame implements Screen {
-    MyGdx c;
+public class ScreenOfTheGame implements Screen {
+    MainGame c;
     InputKeyboard inputKeyboard;
 
     Texture[] imgMosq = new Texture[11];
@@ -22,7 +20,7 @@ public class ScreenGame implements Screen {
     Sound[] sndMosq = new Sound[3];
 
 
-    Mosquito[] mosq = new Mosquito[5];
+    EnemyOfTheNation[] mosq = new EnemyOfTheNation[5];
     Player[] players = new Player[6];
     Player player;
     int frags;
@@ -32,7 +30,7 @@ public class ScreenGame implements Screen {
     TextButton btnExit;
     boolean soundOn = true;
 
-    public ScreenGame(MyGdx context){
+    public ScreenOfTheGame(MainGame context){
         c = context;
         inputKeyboard = new InputKeyboard(SCR_WIDTH, SCR_HEIGHT, 10);
 
@@ -143,7 +141,7 @@ public class ScreenGame implements Screen {
         timeStart = TimeUtils.millis();
         // создание комаров
         for (int i = 0; i < mosq.length; i++) {
-            mosq[i] = new Mosquito();
+            mosq[i] = new EnemyOfTheNation();
         }
         loadTableOfRecords();
     }

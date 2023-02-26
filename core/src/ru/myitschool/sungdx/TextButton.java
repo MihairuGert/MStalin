@@ -1,6 +1,6 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.SCR_WIDTH;
+import static ru.myitschool.sungdx.MainGame.SCR_WIDTH;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;

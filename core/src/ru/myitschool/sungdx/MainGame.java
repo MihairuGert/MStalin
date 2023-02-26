@@ -1,24 +1,15 @@
 package ru.myitschool.sungdx;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.TimeUtils;
 
-public class MyGdx extends Game {
+public class MainGame extends Game {
 	public static final int SCR_WIDTH = 1280, SCR_HEIGHT = 720;
 
 	SpriteBatch batch;
@@ -26,8 +17,8 @@ public class MyGdx extends Game {
 	Vector3 touch;
 	BitmapFont font, fontLarge;
 
-	ScreenGame screenGame;
-	ScreenIntro screenIntro;
+	ScreenOfTheGame screenGame;
+	ScreenMenu screenIntro;
 	ScreenSettings screenSettings;
 	
 	@Override
@@ -39,8 +30,8 @@ public class MyGdx extends Game {
 		touch = new Vector3();
 		generateFont();
 
-		screenGame = new ScreenGame(this);
-		screenIntro = new ScreenIntro(this);
+		screenGame = new ScreenOfTheGame(this);
+		screenIntro = new ScreenMenu(this);
 		screenSettings = new ScreenSettings(this);
 		setScreen(screenIntro);
 	}
@@ -59,7 +50,7 @@ public class MyGdx extends Game {
 	}
 
 	void generateFont(){
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("mr_insulag.otf"));
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("soviet_font.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.color = new Color(1, 0.8f, 0.4f, 1);
 		parameter.size = 45;

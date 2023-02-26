@@ -1,16 +1,15 @@
 package ru.myitschool.sungdx;
 
-import static ru.myitschool.sungdx.MyGdx.SCR_HEIGHT;
-import static ru.myitschool.sungdx.MyGdx.SCR_WIDTH;
+import static ru.myitschool.sungdx.MainGame.SCR_HEIGHT;
+import static ru.myitschool.sungdx.MainGame.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Align;
 
-public class ScreenIntro implements Screen {
-    MyGdx c;
+public class ScreenMenu implements Screen {
+    MainGame c;
 
     Texture imgBG;
 
@@ -18,10 +17,10 @@ public class ScreenIntro implements Screen {
 
     Music music;
 
-    public ScreenIntro(MyGdx context){
+    public ScreenMenu(MainGame context){
         c = context;
         // создание изображений
-        imgBG = new Texture("winter1.jpg");
+        imgBG = new Texture("menu_background.jpg");
         btnPlay = new TextButton(c.fontLarge, "ИГРАТЬ", 650);
         btnSettings = new TextButton(c.fontLarge, "НАСТРОЙКИ", 550);
         btnAbout = new TextButton(c.fontLarge, "ОБ ИГРЕ", 450);
