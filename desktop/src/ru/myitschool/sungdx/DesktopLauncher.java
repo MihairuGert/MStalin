@@ -9,8 +9,8 @@ import ru.myitschool.sungdx.MyGdx;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
-		config.setTitle("Sun GDX");
+		config.setForegroundFPS(144);
+		config.setTitle("Mihairu's NKVD Simulator");
 		config.setWindowedMode(SCR_WIDTH, SCR_HEIGHT);
 		new Lwjgl3Application(new MyGdx(), config);
 	}
